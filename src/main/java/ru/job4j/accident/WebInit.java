@@ -22,6 +22,5 @@ public class WebInit implements WebApplicationInitializer {
 			servletContext.addServlet("SpringRootController", servlet);
 		dispatcher.setLoadOnStartup(1);
 		dispatcher.addMapping("/");
-
 	}
 }
