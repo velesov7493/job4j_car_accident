@@ -17,23 +17,19 @@ public class AccidentService {
 		repository = repo;
 	}
 
-	public void addAccident(Accident value) {
-		repository.addAccident(value);
-	}
-
 	public Collection<Accident> findAll() {
 		return repository.findAll();
 	}
 
-	public Accident findAccidentById(int id) {
-		return repository.findAccidentById(id);
+	public Accident findById(int id) {
+		return repository.findById(id);
 	}
 
-	public void updateAccident(int id, Accident value) {
-		repository.updateAccident(id, value);
+	public void save(Accident value) {
+		repository.save(value);
 	}
 
-	public void deleteAccidentById(int id) {
-		repository.deleteAccidentById(id);
+	public void deleteById(int id) {
+		repository.deleteById(id);
 	}
 }
