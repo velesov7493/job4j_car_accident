@@ -8,12 +8,14 @@ public class Accident {
 	private String name;
 	private String text;
 	private String address;
+	private AccidentType type;
 
-	public static Accident of(String aName, String aText, String aAddress) {
+	public static Accident of(String aName, String aText, String aAddress, AccidentType aType) {
 		Accident result = new Accident();
 		result.name = aName;
 		result.text = aText;
 		result.address = aAddress;
+		result.type = aType;
 		return result;
 	}
 
@@ -49,6 +51,14 @@ public class Accident {
 		this.address = address;
 	}
 
+	public AccidentType getType() {
+		return type;
+	}
+
+	public void setType(AccidentType type) {
+		this.type = type;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) {
@@ -58,14 +68,11 @@ public class Accident {
 			return false;
 		}
 		Accident accident = (Accident) o;
-		return
-				id == accident.id
-				&& Objects.equals(name, accident.name)
-				&& Objects.equals(address, accident.address);
+		return id == accident.id;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, name, address);
+		return Objects.hash(id);
 	}
 }

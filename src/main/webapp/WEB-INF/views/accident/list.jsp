@@ -15,6 +15,7 @@
                     <thead>
                     <tr>
                         <th>Наименование</th>
+                        <th>Тип</th>
                         <th class="big-col">Описание</th>
                         <th>Операции</th>
                     </tr>
@@ -23,6 +24,7 @@
                     <c:forEach var="a" items="${accidents}">
                         <tr>
                             <td>${a.name}</td>
+                            <td>${a.type.name}</td>
                             <td>${a.text}</td>
                             <td><a class="btn btn-secondary" href="<c:url value="/edit/${a.id}"/>"><i class="fa fa-edit"></i></a></td>
                         </tr>
@@ -34,4 +36,4 @@
     </div>
 </div>
 
-<%@ include file="../../modules/pageHeader.jsp" %>
+<%@ include file="../../modules/pageFooter.jsp" %>

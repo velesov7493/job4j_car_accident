@@ -1,7 +1,6 @@
 package ru.job4j.accident.repositories;
 
 import org.springframework.stereotype.Repository;
-import ru.job4j.accident.models.Accident;
 import ru.job4j.accident.models.AccidentType;
 
 import java.util.Collection;
@@ -10,30 +9,36 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Repository
-public class MemAccidentRepository {
+public class MemAccidentTypeRepository {
 
-	private Map<Integer, Accident> records = new HashMap<>();
+	private Map<Integer, AccidentType> records = new HashMap<>();
 	private AtomicInteger generator = new AtomicInteger(0);
 
-	private void add(Accident value) {
+	public MemAccidentTypeRepository() {
+		add(AccidentType.of("Две машины"));
+		add(AccidentType.of("Машина и пешеход"));
+		add(AccidentType.of("Машина и велосипед"));
+	}
+
+	private void add(AccidentType value) {
 		value.setId(generator.incrementAndGet());
 		records.putIfAbsent(value.getId(), value);
 	}
 
-	private void update(int id, Accident value) {
+	private void update(int id, AccidentType value) {
 		value.setId(id);
 		records.put(id, value);
 	}
 
-	public Collection<Accident> findAll() {
+	public Collection<AccidentType> findAll() {
 		return records.values();
 	}
 
-	public Accident findById(int id) {
+	public AccidentType findById(int id) {
 		return records.get(id);
 	}
 
-	public void save(Accident value) {
+	public void save(AccidentType value) {
 		if (value.getId() == 0) {
 			add(value);
 		} else {

@@ -17,6 +17,14 @@
                         <input id="aName" class="form-control" name="name" type="text" value="${empty accident ? '' : accident.name}"/>
                     </div>
                     <div class="mb-3">
+                        <label for="aType">Тип:</label>
+                        <select id="aType" name="type.id" class="form-select">
+                            <c:forEach var="type" items="${types}">
+                                <option value="${type.id}" ${not empty accident and accident.type.id == type.id ? 'selected' : ''}>${type.name}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                    <div class="mb-3">
                         <label for="aDescription">Описание:</label>
                         <textarea id="aDescription" class="form-control" name="text">${empty accident ? '' : accident.text}</textarea>
                     </div>
@@ -33,6 +41,6 @@
     </div>
 </div>
 
-<%@ include file="../../modules/pageHeader.jsp" %>
+<%@ include file="../../modules/pageFooter.jsp" %>
 
 
