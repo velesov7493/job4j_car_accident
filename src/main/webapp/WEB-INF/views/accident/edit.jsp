@@ -25,6 +25,14 @@
                         </select>
                     </div>
                     <div class="mb-3">
+                        <label for="aRuleIds">Статьи:</label>
+                        <select id="aRuleIds" name="ruleIds" class="form-select" multiple>
+                            <c:forEach var="rule" items="${rules}">
+                                <option value="${rule.id}" ${not empty accident and accident.rules.contains(rule) ? 'selected' : ''}>${rule.name}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                    <div class="mb-3">
                         <label for="aDescription">Описание:</label>
                         <textarea id="aDescription" class="form-control" name="text">${empty accident ? '' : accident.text}</textarea>
                     </div>
