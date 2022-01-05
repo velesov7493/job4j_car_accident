@@ -27,12 +27,6 @@ public class AccidentController {
 		return "accident/edit";
 	}
 
-	@GetMapping("/update")
-	public String accidentUpdate(@RequestParam("id") int id, Model model) {
-		model.addAttribute("accident", service.findById(id));
-		return "accident/edit";
-	}
-
 	@GetMapping("/create")
 	public String accidentCreate(Model model) {
 		return "accident/edit";
