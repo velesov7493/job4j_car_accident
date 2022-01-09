@@ -17,6 +17,7 @@
                         <th>Наименование</th>
                         <th>Тип</th>
                         <th class="big-col">Описание</th>
+                        <th>Статус</th>
                         <th>Операции</th>
                     </tr>
                     </thead>
@@ -26,6 +27,14 @@
                             <td>${a.name}</td>
                             <td>${a.type.name}</td>
                             <td>${a.text}</td>
+                            <td>
+                                <c:choose>
+                                    <c:when test="${a.state.id==1}"><i class="fa fa-2x fa-asterisk text-danger"></i></c:when>
+                                    <c:when test="${a.state.id==2}"><i class="fa fa-2x fa-briefcase text-warning"></i></c:when>
+                                    <c:when test="${a.state.id==3}"><i class="fa fa-2x fa-times text-secondary"></i></c:when>
+                                    <c:when test="${a.state.id==4}"><i class="fa fa-2x fa-check-square text-success"></i></c:when>
+                                </c:choose>
+                            </td>
                             <td><a class="btn btn-secondary" href="<c:url value="/edit/${a.id}"/>"><i class="fa fa-edit"></i></a></td>
                         </tr>
                     </c:forEach>
