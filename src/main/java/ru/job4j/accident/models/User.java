@@ -1,14 +1,29 @@
 package ru.job4j.accident.models;
 
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
+@Table(name = "tz_users")
 public class User {
 
+	@Id
+	@SequenceGenerator(
+		name = "usersIdSeq",
+		sequenceName = "tz_users_id_seq",
+		allocationSize = 1
+	)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "usersIdSeq")
 	private int id;
 	private String name;
+	@Column(unique = true)
 	private String email;
+	@Column(name = "pass")
 	private String password;
+	@Column(unique = true)
 	private String phone;
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_role")
 	private Role role;
 
 	public int getId() {

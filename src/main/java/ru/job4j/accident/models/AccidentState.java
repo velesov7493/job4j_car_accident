@@ -1,9 +1,19 @@
 package ru.job4j.accident.models;
 
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
+@Table(name = "tz_accident_stats")
 public class AccidentState {
 
+	@Id
+	@SequenceGenerator(
+		name = "statsIdSeq",
+		sequenceName = "tz_accident_stats_id_seq",
+		allocationSize = 1
+	)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "statsIdSeq")
 	private int id;
 	private String name;
 

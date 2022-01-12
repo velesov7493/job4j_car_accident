@@ -12,15 +12,15 @@ import java.util.Collection;
 @Service
 public class AccidentService {
 
-	private final JdbcAccidentRepository accidents;
-	private final JdbcAccidentTypeRepository types;
-	private final JdbcRuleRepository rules;
+	private final HbmAccidentRepository accidents;
+	private final HbmAccidentTypeRepository types;
+	private final HbmRuleRepository rules;
 
 	@Autowired
 	public AccidentService(
-		JdbcAccidentRepository accidentsRepo,
-		JdbcAccidentTypeRepository typesRepo,
-		JdbcRuleRepository rulesRepo
+		HbmAccidentRepository accidentsRepo,
+		HbmAccidentTypeRepository typesRepo,
+		HbmRuleRepository rulesRepo
 	) {
 		accidents = accidentsRepo;
 		types = typesRepo;

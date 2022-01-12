@@ -1,22 +1,50 @@
 package ru.job4j.accident.models;
 
+import javax.persistence.*;
 import java.util.*;
 
+@Entity
+@Table(name = "tj_accidents")
 public class Accident {
 
+	@Id
+	@SequenceGenerator(
+		name = "accidentsIdSeq",
+		sequenceName = "tj_media_id_seq",
+		allocationSize = 1
+	)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "accidentsIdSeq")
 	private int id;
 	private String name;
+	@Column(name = "description")
 	private String text;
 	private String address;
 	private String solution;
 	private String actor1Number;
 	private String actor2Number;
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(insertable = false, updatable = false)
 	private Date created;
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_type")
 	private AccidentType type;
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_author")
 	private User author;
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_inspector")
 	private User inspector;
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_state")
 	private AccidentState state;
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinTable(
+		name = "tr_accidents_rules",
+		joinColumns = @JoinColumn(name = "id_accident"),
+		inverseJoinColumns = @JoinColumn(name = "id_rule")
+	)
 	private Set<Rule> rules;
+	@OneToMany(mappedBy = "accident", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Set<Media> attachments;
 
 	public Accident() {
@@ -142,6 +170,7 @@ public class Accident {
 	}
 
 	public void addAttachment(Media value) {
+		value.setAccident(this);
 		attachments.add(value);
 	}
 
