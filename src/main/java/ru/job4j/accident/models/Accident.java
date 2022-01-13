@@ -10,7 +10,7 @@ public class Accident {
 	@Id
 	@SequenceGenerator(
 		name = "accidentsIdSeq",
-		sequenceName = "tj_media_id_seq",
+		sequenceName = "tj_accidents_id_seq",
 		allocationSize = 1
 	)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "accidentsIdSeq")
@@ -25,26 +25,30 @@ public class Accident {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(insertable = false, updatable = false)
 	private Date created;
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_type")
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.DETACH}, fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_type", nullable = false)
 	private AccidentType type;
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_author")
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.DETACH}, fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_author", nullable = false)
 	private User author;
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.DETACH}, fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_inspector")
 	private User inspector;
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_state")
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.DETACH}, fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_state", nullable = false)
 	private AccidentState state;
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToMany(cascade = {CascadeType.MERGE, CascadeType.DETACH}, fetch = FetchType.LAZY)
 	@JoinTable(
 		name = "tr_accidents_rules",
 		joinColumns = @JoinColumn(name = "id_accident"),
 		inverseJoinColumns = @JoinColumn(name = "id_rule")
 	)
 	private Set<Rule> rules;
-	@OneToMany(mappedBy = "accident", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(
+		mappedBy = "accident",
+		cascade = {CascadeType.MERGE, CascadeType.DETACH},
+		fetch = FetchType.LAZY
+	)
 	private Set<Media> attachments;
 
 	public Accident() {

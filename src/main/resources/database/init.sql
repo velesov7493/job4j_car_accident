@@ -46,7 +46,7 @@ CREATE TABLE tz_users (
 CREATE TABLE tj_accidents (
     id SERIAL PRIMARY KEY,
     id_type INTEGER REFERENCES tz_accident_types (id) ON DELETE SET NULL,
-    id_state INTEGER DEFAULT 1 REFERENCES tz_accident_stats (id) ON DELETE RESTRICT,
+    id_state INTEGER NOT NULL DEFAULT 1 REFERENCES tz_accident_stats (id) ON DELETE RESTRICT,
     id_author INTEGER NOT NULL REFERENCES tz_users (id) ON DELETE RESTRICT,
     id_inspector INTEGER DEFAULT NULL REFERENCES tz_users (id) ON DELETE SET NULL,
     name VARCHAR(250) NOT NULL,

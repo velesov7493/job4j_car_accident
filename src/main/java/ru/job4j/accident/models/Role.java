@@ -8,12 +8,6 @@ import java.util.Objects;
 public class Role {
 
 	@Id
-	@SequenceGenerator(
-		name = "rolesIdSeq",
-		sequenceName = "tz_roles_id_seq",
-		allocationSize = 1
-	)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "rolesIdSeq")
 	private int id;
 	private String name;
 

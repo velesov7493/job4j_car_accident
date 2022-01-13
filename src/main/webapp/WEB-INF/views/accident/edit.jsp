@@ -18,7 +18,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="aType">Тип:</label>
-                        <select id="aType" name="type.id" class="form-select">
+                        <select id="aType" name="typeId" class="form-select">
                             <c:forEach var="type" items="${types}">
                                 <option value="${type.id}" ${not empty accident and accident.type.id == type.id ? 'selected' : ''}>${type.name}</option>
                             </c:forEach>

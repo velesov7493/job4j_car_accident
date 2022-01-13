@@ -8,12 +8,6 @@ import java.util.Objects;
 public class AccidentState {
 
 	@Id
-	@SequenceGenerator(
-		name = "statsIdSeq",
-		sequenceName = "tz_accident_stats_id_seq",
-		allocationSize = 1
-	)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "statsIdSeq")
 	private int id;
 	private String name;
 
