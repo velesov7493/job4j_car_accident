@@ -7,6 +7,7 @@
     <div class="row">
         <div class="col-sm-12 p-0 card">
             <div class="card-header">
+                <h4>Вы вошли как: ${user.username}</h4><hr/>
                 <h3 class="text-center">Список нарушений</h3>
             </div>
             <div class="card-body">

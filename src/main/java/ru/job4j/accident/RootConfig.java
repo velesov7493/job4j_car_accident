@@ -1,7 +1,10 @@
 package ru.job4j.accident;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
@@ -12,4 +15,10 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 	"ru.job4j.accident.controllers",
 	"ru.job4j.accident.config"
 })
-public class RootConfig { }
+public class RootConfig {
+
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
+}

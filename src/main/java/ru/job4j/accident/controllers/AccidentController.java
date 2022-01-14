@@ -2,6 +2,7 @@ package ru.job4j.accident.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +23,11 @@ public class AccidentController {
 
 	@GetMapping("/")
 	public String accidentList(Model model) {
+		model.addAttribute(
+			"user",
+			SecurityContextHolder.getContext()
+			.getAuthentication().getPrincipal()
+		);
 		model.addAttribute("accidents", service.findAllAccidents());
 		return "accident/list";
 	}
