@@ -38,3 +38,5 @@
 ![screenshoot](images/image002.png)
 #### Редактирование нарушения ####
 ![screenshoot](images/image003.png)
+#### Форма авторизации при ошибке входа ####
+![screenshoot](images/image004.png)
