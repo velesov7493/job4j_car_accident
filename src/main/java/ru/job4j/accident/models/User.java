@@ -7,87 +7,109 @@ import java.util.Objects;
 @Table(name = "tz_users")
 public class User {
 
-	@Id
-	@SequenceGenerator(
-		name = "usersIdSeq",
-		sequenceName = "tz_users_id_seq",
-		allocationSize = 1
-	)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "usersIdSeq")
-	private int id;
-	private String name;
-	@Column(unique = true)
-	private String email;
-	@Column(name = "pass")
-	private String password;
-	@Column(unique = true)
-	private String phone;
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_role")
-	private Role role;
+    @Id
+    @SequenceGenerator(
+            name = "usersIdSeq",
+            sequenceName = "tz_users_id_seq",
+            allocationSize = 1
+    )
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "usersIdSeq")
+    private int id;
+    private boolean enabled;
+    private String name;
+    @Column(unique = true)
+    private String email;
+    @Column(name = "pass")
+    private String password;
+    @Column(unique = true)
+    private String phone;
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.DETACH}, fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_role")
+    private Role role;
 
-	public int getId() {
-		return id;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public String getPhone() {
-		return phone;
-	}
+    public String getPhone() {
+        return phone;
+    }
 
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
-	public Role getRole() {
-		return role;
-	}
+    public Role getRole() {
+        return role;
+    }
 
-	public void setRole(Role role) {
-		this.role = role;
-	}
+    public void setRole(Role role) {
+        this.role = role;
+    }
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) {
-			return true;
-		}
-		if (o == null || getClass() != o.getClass()) {
-			return false;
-		}
-		User user = (User) o;
-		return id == user.id;
-	}
+    public boolean isEnabled() {
+        return enabled;
+    }
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(id);
-	}
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        User user = (User) o;
+        return id == user.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return
+                "User{"
+                        + "id=" + id
+                        + ", enabled=" + enabled
+                        + ", name='" + name + '\''
+                        + ", email='" + email + '\''
+                        + ", password='" + password + '\''
+                        + ", phone='" + phone + '\''
+                        + '}';
+    }
 }

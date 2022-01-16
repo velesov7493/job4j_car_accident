@@ -4,6 +4,6 @@
 <c:if test="${pageScript != null}">
     <script type="text/javascript" src="<c:url value="/scripts/${pageScript}"/>"></script>
 </c:if>
-    <script type="text/javascript" src="<c:url value="/scripts/bootstrap.bundle.min.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/scripts/bootstrap.bundle.min.js"/>"></script>
 </body>
 </html>

@@ -5,4 +5,5 @@ import org.springframework.stereotype.Repository;
 import ru.job4j.accident.models.AccidentType;
 
 @Repository
-public interface AccidentTypeRepository extends JpaRepository<AccidentType, Integer> { }
+public interface AccidentTypeRepository extends JpaRepository<AccidentType, Integer> {
+}

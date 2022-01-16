@@ -31,15 +31,17 @@ CREATE TABLE tz_accident_stats (
 
 CREATE TABLE tz_roles (
     id INTEGER PRIMARY KEY,
+    authority VARCHAR(50) NOT NULL UNIQUE,
     name VARCHAR(120) NOT NULL
 );
 
 CREATE TABLE tz_users (
     id SERIAL PRIMARY KEY,
     id_role INTEGER DEFAULT 1 REFERENCES tz_roles (id) ON DELETE RESTRICT,
+    enabled BOOLEAN DEFAULT TRUE,
     name VARCHAR(120) NOT NULL,
     email VARCHAR(120) NOT NULL UNIQUE,
-    pass VARCHAR(40) NOT NULL,
+    pass VARCHAR(100) NOT NULL,
     phone VARCHAR(20) NOT NULL UNIQUE
 );
 

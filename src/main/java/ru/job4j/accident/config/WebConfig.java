@@ -9,24 +9,24 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
 
-	@Override
-	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry
-			.addResourceHandler("/styles/**")
-			.addResourceLocations("/WEB-INF/template/css/");
-		registry
-			.addResourceHandler("/scripts/**")
-			.addResourceLocations("/WEB-INF/template/js/");
-		registry
-			.addResourceHandler("/fonts/**")
-			.addResourceLocations("/WEB-INF/template/fonts/");
-	}
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry
+                .addResourceHandler("/styles/**")
+                .addResourceLocations("/WEB-INF/template/css/");
+        registry
+                .addResourceHandler("/scripts/**")
+                .addResourceLocations("/WEB-INF/template/js/");
+        registry
+                .addResourceHandler("/fonts/**")
+                .addResourceLocations("/WEB-INF/template/fonts/");
+    }
 
-	@Override
-	public void configureViewResolvers(ViewResolverRegistry registry) {
-		InternalResourceViewResolver vr = new InternalResourceViewResolver();
-		vr.setPrefix("/WEB-INF/views/");
-		vr.setSuffix(".jsp");
-		registry.viewResolver(vr);
-	}
+    @Override
+    public void configureViewResolvers(ViewResolverRegistry registry) {
+        InternalResourceViewResolver vr = new InternalResourceViewResolver();
+        vr.setPrefix("/WEB-INF/views/");
+        vr.setSuffix(".jsp");
+        registry.viewResolver(vr);
+    }
 }

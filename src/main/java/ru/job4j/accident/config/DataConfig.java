@@ -25,42 +25,42 @@ import javax.sql.DataSource;
 @EnableJpaRepositories("ru.job4j.accident.repositories")
 public class DataConfig {
 
-	private static final Logger LOG = LoggerFactory.getLogger(DataConfig.class);
+    private static final Logger LOG = LoggerFactory.getLogger(DataConfig.class);
 
-	@Bean
-	public DataSource postgeSqlDs() {
-		DataSource result = null;
-		try {
-			InitialContext initCtx = new InitialContext();
-			Context envCtx = (Context) initCtx.lookup("java:comp/env");
-			result = (DataSource) envCtx.lookup("jdbc/postgres");
-		} catch (NamingException ex) {
-			LOG.error(
-				"Критическая ошибка инициализации DataSource: "
-				+ "ресурс подключения к БД не обнаружен в контексте приложения!", ex
-			);
-			LOG.info("Выключаюсь...");
-			System.exit(2);
-		}
-		return result;
-	}
+    @Bean
+    public DataSource postgeSqlDs() {
+        DataSource result = null;
+        try {
+            InitialContext initCtx = new InitialContext();
+            Context envCtx = (Context) initCtx.lookup("java:comp/env");
+            result = (DataSource) envCtx.lookup("jdbc/postgres");
+        } catch (NamingException ex) {
+            LOG.error(
+                    "Критическая ошибка инициализации DataSource: "
+                            + "ресурс подключения к БД не обнаружен в контексте приложения!", ex
+            );
+            LOG.info("Выключаюсь...");
+            System.exit(2);
+        }
+        return result;
+    }
 
-	@Bean
-	public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource ds) {
-		HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-		vendorAdapter.setGenerateDdl(false);
-		LocalContainerEntityManagerFactoryBean factory =
-			new LocalContainerEntityManagerFactoryBean();
-		factory.setJpaVendorAdapter(vendorAdapter);
-		factory.setPackagesToScan("ru.job4j.accident.models");
-		factory.setDataSource(ds);
-		return factory;
-	}
+    @Bean
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource ds) {
+        HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+        vendorAdapter.setGenerateDdl(false);
+        LocalContainerEntityManagerFactoryBean factory =
+                new LocalContainerEntityManagerFactoryBean();
+        factory.setJpaVendorAdapter(vendorAdapter);
+        factory.setPackagesToScan("ru.job4j.accident.models");
+        factory.setDataSource(ds);
+        return factory;
+    }
 
-	@Bean
-	public PlatformTransactionManager transactionManager(EntityManagerFactory factory) {
-		JpaTransactionManager txManager = new JpaTransactionManager();
-		txManager.setEntityManagerFactory(factory);
-		return txManager;
-	}
+    @Bean
+    public PlatformTransactionManager transactionManager(EntityManagerFactory factory) {
+        JpaTransactionManager txManager = new JpaTransactionManager();
+        txManager.setEntityManagerFactory(factory);
+        return txManager;
+    }
 }

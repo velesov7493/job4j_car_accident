@@ -5,4 +5,5 @@ import org.springframework.stereotype.Repository;
 import ru.job4j.accident.models.Rule;
 
 @Repository
-public interface RuleRepository extends JpaRepository<Rule, Integer> { }
+public interface RuleRepository extends JpaRepository<Rule, Integer> {
+}
